@@ -1,11 +1,16 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { supabase } from "../../client.js";
 import "./Create.css";
 
 import NavBar from "../components/NavBar";
 
-const Create = () => {
+const Create = ({ setQuery }) => {
   const [post, setPost] = useState({ title: "", content: "", imgURL: "" });
+
+  useEffect(() => {
+    setQuery(""); // Clear query on page mount
+  }, []);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -40,8 +45,8 @@ const Create = () => {
 
   return (
     <>
-      <NavBar />
-      <div className="page">
+      <NavBar setQuery={setQuery} />
+      <div className="page center-page">
         <div className="create">
           <form>
             <div className="create-post">
@@ -68,7 +73,9 @@ const Create = () => {
               />
             </div>
           </form>
-          <button className="create-button" onClick={createPost}>Create Post</button>
+          <button className="create-button" onClick={createPost}>
+            Create Post
+          </button>
         </div>
       </div>
     </>

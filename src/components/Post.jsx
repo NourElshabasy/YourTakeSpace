@@ -22,7 +22,10 @@ const Post = (props) => {
   return (
     <Link to={"/details/" + props.id}>
       <div className="post">
+        <div className="row">
         <p className="post-time">{formatTimeAgo(props.created_at)}</p>
+        {props.edited && <p className="post-edited">edited</p>}
+        </div>
         <h3 className="post-title">{props.title}</h3>
         <p className="post-upvotes">{props.upvoteCount} upvotes</p>
       </div>

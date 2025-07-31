@@ -6,7 +6,6 @@
 }
 
 .page{
-  margin-top: 100px;
   width: 100vw;
   display: flex;
   flex-wrap: wrap;
@@ -15,9 +14,35 @@
   justify-content: center;
 }
 
+.center-page{
+    min-height: 100vh;
+    margin: 0;
+}
+
+
 .posts{
   display: flex;
   flex-direction: column;
-  min-height: 1000px;
+  min-height: 100vh;
+  box-sizing: border-box;
   gap: 22px;
+  padding-top: 100px;
 }
+
+.sort-buttons{
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.order-buttons{
+  height: 40px;
+  background-color: #4f46e5;
+}
+
+.order-buttons:disabled{
+  color: rgb(189, 189, 189);
+}
+
+
+

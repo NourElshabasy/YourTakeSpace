@@ -1,10 +1,37 @@
-import React from 'react';
-import './Search.css';
+import React from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./Search.css";
 
-const Search = () => {
+import search from "../assets/search.png";
+
+const Search = ({ setQuery }) => {
+    const [localQuery, setLocalQuery] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    setQuery(localQuery); 
+    navigate("/");
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") handleSearch();
+  };
+
+
   return (
-    <div>
-      <h3>Search</h3>
+    <div className="search-bar">
+      <input
+        className="search"
+        type="text"
+        value={localQuery}
+        placeholder="Search"
+        onChange={(e) => setLocalQuery(e.target.value)}
+        onKeyDown={handleKeyDown}
+      />
+      <div className="search-button" onClick={handleSearch}>
+        <img src={search} className="search-icon"/>
+      </div>
     </div>
   );
 };

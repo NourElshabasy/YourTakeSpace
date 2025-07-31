@@ -9,39 +9,73 @@ import Post from "./components/Post";
 
 function App(props) {
   const [posts, setPosts] = useState([]);
+  const [sortBy, setSortBy] = useState("newest");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const { data } = await supabase.from("Posts").select();
+      setLoading(true);
+      let query = supabase.from("Posts").select("*");
 
-      setPosts(data);
+      if (sortBy === "newest") {
+        query = query.order("created_at", { ascending: true });
+      } else if (sortBy === "popular") {
+        query = query.order("upvoteCount", { ascending: true });
+      }
 
+      const { data, error } = await query;
+
+      if (error) {
+        console.error("Error fetching posts:", error);
+        setPosts([]);
+      } else {
+        setPosts(data);
+      }
       setLoading(false);
     };
+
     fetchPosts();
-  }, [props]);
+  }, [sortBy, props]);
+
+  const filteredPosts = posts.filter((post) =>
+    post.title.toLowerCase().includes(props.query?.toLowerCase() || "")
+  );
 
   return (
     <>
-      <NavBar />
+      <NavBar setQuery={props.setQuery} />
       <div className="page">
         <div className="posts">
-          {posts && posts.length > 0 ? (
-            [...posts]
-              .reverse()
-              .map((post) => (
-                <Post
-                  key={post.id}
-                  id={post.id}
-                  created_at={post.created_at}
-                  title={post.title}
-                  upvoteCount={post.upvoteCount}
-                />
-              ))
-          ) : (
-             !loading && <h2 className="no-posts">{"No posts Yet 😞"}</h2>
-          )}
+          <div className="sort-buttons">
+            <p>Order by: </p>
+            <button
+              onClick={() => setSortBy("newest")}
+              disabled={sortBy === "newest"}
+              className="order-buttons"
+            >
+              Newest
+            </button>
+            <button
+              onClick={() => setSortBy("popular")}
+              disabled={sortBy === "popular"}
+              className="order-buttons"
+            >
+              Most Popular
+            </button>
+          </div>
+          {posts && posts.length > 0
+            ? [...filteredPosts]
+                .map((post) => (
+                  <Post
+                    key={post.id}
+                    id={post.id}
+                    created_at={post.created_at}
+                    title={post.title}
+                    upvoteCount={post.upvoteCount}
+                    edited={post.edited}
+                  />
+                ))
+            : !loading && <h2 className="no-posts">{"No posts Yet 😞"}</h2>}
         </div>
       </div>
     </>
