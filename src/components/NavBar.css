@@ -1,0 +1,17 @@
+.nav-bar{
+    width: 100vw;
+    padding-left: 125px;
+    padding-right: 125px;
+    padding-top: 6px;
+
+    position: fixed;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: #4f46e5;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
