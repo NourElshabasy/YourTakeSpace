@@ -123,3 +123,10 @@
 
     margin-top: 20px; 
 }
+
+.time-edit{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}

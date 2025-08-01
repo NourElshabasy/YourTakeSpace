@@ -150,7 +150,11 @@ const Details = ({ setQuery }) => {
       <NavBar setQuery={setQuery} />
       <div className="page detail-page">
         <div className="details">
-          <p className="post-time">{formatTimeAgo(post.created_at)}</p>
+          <div className="time-edit">
+            <p className="post-time">{formatTimeAgo(post.created_at)}</p>
+            {post.edited && <p className="post-edited">edited</p>}
+          </div>
+
           <h3 className="post-title">{post.title}</h3>
           <p className="post-content">{post.content}</p>
           {imageLoaded && (
@@ -209,7 +213,11 @@ const Details = ({ setQuery }) => {
         <div className="comments">
           <h3>Comments</h3>
           <CreateComment postId={post.id} setSubmitSuccess={setSubmitSuccess} />
-          <CommentSection postId={id} submitSuccess={submitSuccess} setSubmitSuccess={setSubmitSuccess}/>
+          <CommentSection
+            postId={id}
+            submitSuccess={submitSuccess}
+            setSubmitSuccess={setSubmitSuccess}
+          />
         </div>
       </div>
     </>
