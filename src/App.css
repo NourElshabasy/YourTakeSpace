@@ -27,12 +27,14 @@
   box-sizing: border-box;
   gap: 22px;
   padding-top: 100px;
+  padding-bottom: 50px;
 }
 
 .sort-buttons{
   display: flex;
   gap: 12px;
   align-items: center;
+  justify-content: flex-start;
 }
 
 .order-buttons{
@@ -44,5 +46,7 @@
   color: rgb(189, 189, 189);
 }
 
-
-
+.number-post-flex{
+  display: flex;
+  justify-content: space-between;
+}

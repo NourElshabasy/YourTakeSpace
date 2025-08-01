@@ -18,9 +18,9 @@ function App(props) {
       let query = supabase.from("Posts").select("*");
 
       if (sortBy === "newest") {
-        query = query.order("created_at", { ascending: true });
+        query = query.order("created_at", { ascending: false });
       } else if (sortBy === "popular") {
-        query = query.order("upvoteCount", { ascending: true });
+        query = query.order("upvoteCount", { ascending: false });
       }
 
       const { data, error } = await query;
@@ -46,35 +46,39 @@ function App(props) {
       <NavBar setQuery={props.setQuery} />
       <div className="page">
         <div className="posts">
-          <div className="sort-buttons">
-            <p>Order by: </p>
-            <button
-              onClick={() => setSortBy("newest")}
-              disabled={sortBy === "newest"}
-              className="order-buttons"
-            >
-              Newest
-            </button>
-            <button
-              onClick={() => setSortBy("popular")}
-              disabled={sortBy === "popular"}
-              className="order-buttons"
-            >
-              Most Popular
-            </button>
+          <div className="number-post-flex">
+            <div className="sort-buttons">
+              <p>Order by: </p>
+              <button
+                onClick={() => setSortBy("newest")}
+                disabled={sortBy === "newest"}
+                className="order-buttons"
+              >
+                Newest
+              </button>
+              <button
+                onClick={() => setSortBy("popular")}
+                disabled={sortBy === "popular"}
+                className="order-buttons"
+              >
+                Most Popular
+              </button>
+            </div>
+            <p>
+              {posts.length} Post{posts.length !== 1 && "s"}
+            </p>
           </div>
           {posts && posts.length > 0
-            ? [...filteredPosts]
-                .map((post) => (
-                  <Post
-                    key={post.id}
-                    id={post.id}
-                    created_at={post.created_at}
-                    title={post.title}
-                    upvoteCount={post.upvoteCount}
-                    edited={post.edited}
-                  />
-                ))
+            ? [...filteredPosts].map((post) => (
+                <Post
+                  key={post.id}
+                  id={post.id}
+                  created_at={post.created_at}
+                  title={post.title}
+                  upvoteCount={post.upvoteCount}
+                  edited={post.edited}
+                />
+              ))
             : !loading && <h2 className="no-posts">{"No posts Yet 😞"}</h2>}
         </div>
       </div>

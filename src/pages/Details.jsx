@@ -14,9 +14,14 @@ import upvote from "../assets/upvote.png";
 import upvoteClicked from "../assets/upvoteClicked.png";
 import downvote from "../assets/downvote.png";
 import downvoteClicked from "../assets/downvoteClicked.png";
+
 import NavBar from "../components/NavBar";
+import CreateComment from "../components/CreateComment";
+import CommentSection from "../components/CommentSection";
 
 const Details = ({ setQuery }) => {
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+
   const { id } = useParams();
   const [post, setPost] = useState({
     id: null,
@@ -85,7 +90,7 @@ const Details = ({ setQuery }) => {
 
   const deletePost = async (event) => {
     event.preventDefault();
-
+    await supabase.from("Comments").delete().eq("post_id", id);
     await supabase.from("Posts").delete().eq("id", id);
 
     window.location = "/";
@@ -200,6 +205,11 @@ const Details = ({ setQuery }) => {
               </div>
             </div>
           </div>
+        </div>
+        <div className="comments">
+          <h3>Comments</h3>
+          <CreateComment postId={post.id} setSubmitSuccess={setSubmitSuccess} />
+          <CommentSection postId={id} submitSuccess={submitSuccess} setSubmitSuccess={setSubmitSuccess}/>
         </div>
       </div>
     </>

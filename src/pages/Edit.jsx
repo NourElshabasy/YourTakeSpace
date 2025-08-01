@@ -49,9 +49,10 @@ const Edit = ({ setQuery }) => {
         title: post.title,
         content: post.content,
         imgURL: post.imgURL,
-        edited: true
+        edited: true,
       })
-      .eq("id", id);
+      .eq("id", id)
+      .select("*");
 
     window.location = "/";
   };
