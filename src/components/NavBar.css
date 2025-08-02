@@ -17,15 +17,50 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.nav-bar-search{
-    border: solid;
+
+.nav-bar-search {
+    flex: 1;
+    display: flex;
+    justify-content: center;
 }
 
 .nav-bar-home{
     color: white;
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
 
 .nav-bar-create{
     color: white;
 }
+
+@media (max-width: 450px) {
+  .logo {
+    width: 70px
+  }
+
+  .nav-bar{
+    padding: 0;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+
+  .nav-bar-home{
+   font-size: 12px;
+  }
+
+  .nav-bar-create{
+    font-size: 12px;
+  }
+
+  .search{
+    height: 10px;
+  }
+  .search-button{
+    height: 14px;
+  }
+}
+

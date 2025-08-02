@@ -50,3 +50,30 @@
   display: flex;
   justify-content: space-between;
 }
+
+.show-details-and-post-num{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.show-details-button{
+  width: 30px;
+  cursor: pointer;
+}
+
+@media (max-width: 450px) {
+  .order-buttons{
+    
+    font-size: 12px;
+  }
+  .post-comment-button{
+    font-size: 12px;
+  }
+  textArea.comment-input{
+    width: 60vw;
+  }
+  img.post-image{
+    width: 100%;
+  }
+}

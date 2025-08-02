@@ -1,4 +1,6 @@
 import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import "./Post.css";
 import { Link } from "react-router-dom";
 
@@ -19,14 +21,35 @@ const Post = (props) => {
 
     return `Posted on ${postDate.toLocaleDateString()}`;
   };
+
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  useEffect(() => {
+    if (!props.imgURL || props.imgURL.trim() === "") {
+      setImageLoaded(false);
+      return;
+    }
+
+    const img = new Image();
+    img.onload = () => setImageLoaded(true);
+    img.onerror = () => setImageLoaded(false);
+    img.src = props.imgURL;
+  }, [props.imgURL]);
   return (
     <Link to={"/details/" + props.id}>
       <div className="post">
         <div className="row">
-        <p className="post-time">{formatTimeAgo(props.created_at)}</p>
-        {props.edited && <p className="post-edited">edited</p>}
+          <p className="post-time">{formatTimeAgo(props.created_at)}</p>
+          {props.edited && imageLoaded && <p className="post-edited">edited</p>}
         </div>
-        <h3 className="post-title">{props.title}</h3>
+        <div className="post-title-div">
+          <h3 className="post-title">{props.title}</h3>
+        </div>
+        {props.showDetails && <p className="post-content">{props.content}</p>}
+        {props.showDetails && imageLoaded && (
+          <img className="post-image" src={props.imgURL} alt="img" />
+        )}
+
         <p className="post-upvotes">{props.upvoteCount} upvotes</p>
       </div>
     </Link>

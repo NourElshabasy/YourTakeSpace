@@ -7,10 +7,14 @@ import "./App.css";
 import NavBar from "./components/NavBar";
 import Post from "./components/Post";
 
+import detailedView from "./assets/detailView.png";
+import compactView from "./assets/compactView.png";
+
 function App(props) {
   const [posts, setPosts] = useState([]);
   const [sortBy, setSortBy] = useState("newest");
   const [loading, setLoading] = useState(true);
+  const [detailView, setDetailView] = useState(false);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -61,12 +65,29 @@ function App(props) {
                 disabled={sortBy === "popular"}
                 className="order-buttons"
               >
-                Most Popular
+                Popular
               </button>
             </div>
-            <p>
-              {posts.length} Post{posts.length !== 1 && "s"}
-            </p>
+            <div className="show-details-and-post-num">
+              <p>
+                {posts.length} Post{posts.length !== 1 && "s"}
+              </p>
+              {detailView ? (
+                <img
+                  src={compactView}
+                  alt="detail"
+                  className="show-details-button"
+                  onClick={() => setDetailView(!detailView)}
+                />
+              ) : (
+                <img
+                  src={detailedView}
+                  alt="compact"
+                  className="show-details-button"
+                  onClick={() => setDetailView(!detailView)}
+                />
+              )}
+            </div>
           </div>
           {posts && posts.length > 0
             ? [...filteredPosts].map((post) => (
@@ -77,6 +98,9 @@ function App(props) {
                   title={post.title}
                   upvoteCount={post.upvoteCount}
                   edited={post.edited}
+                  content={post.content}
+                  imgURL={post.imgURL}
+                  showDetails={detailView}
                 />
               ))
             : !loading && <h2 className="no-posts">{"No posts Yet 😞"}</h2>}

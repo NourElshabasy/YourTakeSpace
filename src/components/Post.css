@@ -35,6 +35,10 @@
 .post-title{
     color: rgba(0, 0, 0, 0.87);
     margin: 0;
+    text-align: left;
+    width: 100%;
+    overflow-wrap: anywhere;
+
 }
 
 .post-upvotes{

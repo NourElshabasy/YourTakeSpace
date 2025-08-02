@@ -10,7 +10,7 @@ const NavBar = ({ setQuery }) => {
   return (
     <div className="nav-bar">
       <Link to="/">
-        <img src={logo} alt="logo" width={100} />
+        <img src={logo} alt="logo" width={100} className="logo"/>
       </Link>
       <Search setQuery={setQuery} className="nav-bar-search" />
       <Link to="/" className="nav-bar-home">

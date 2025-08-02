@@ -1,34 +1,34 @@
-# Web Development Final Project - *Name of App Here*
+# Web Development Final Project - *YourTakeSpace*
 
-Submitted by: **Your Name Here**
+Submitted by: **Nour Elshabasy**
 
-This web app: **insert description**
+This web app: **YourTakeSpace is a casual and open forum where users can share their thoughts, ask questions, and post hot takes on anything they care about. With features like upvoting, comments, sorting, and search, it’s designed to feel like a relaxed space to speak your mind and engage with others—no pressure, just takes.**
 
-Time spent: **X** hours spent in total
+Time spent: **8** hours spent in total
 
 ## Required Features
 
 The following **required** functionality is completed:
 
 
-- [ ] **Web app includes a create form that allows the user to create posts**
+- [x] **Web app includes a create form that allows the user to create posts**
   - Form requires users to add a post title
   - Forms should have the *option* for users to add: 
     - additional textual content
     - an image added as an external image URL
-- [ ] **Web app includes a home feed displaying previously created posts**
+- [x] **Web app includes a home feed displaying previously created posts**
   - Web app must include home feed displaying previously created posts
   - By default, each post on the posts feed should show only the post's:
     - creation time
     - title 
     - upvotes count
   - Clicking on a post should direct the user to a new page for the selected post
-- [ ] **Users can view posts in different ways**
+- [x] **Users can view posts in different ways**
   - Users can sort posts by either:
     -  creation time
     -  upvotes count
   - Users can search for posts by title
-- [ ] **Users can interact with each post in different ways**
+- [x] **Users can interact with each post in different ways**
   - The app includes a separate post page for each created post when clicked, where any additional information is shown, including:
     - content
     - image
@@ -38,7 +38,7 @@ The following **required** functionality is completed:
     - Each click increases the post's upvotes count by one
     - Users can upvote any post any number of times
 
-- [ ] **A post that a user previously created can be edited or deleted from its post pages**
+- [x] **A post that a user previously created can be edited or deleted from its post pages**
   - After a user creates a new post, they can go back and edit the post
   - A previously created post can be deleted from its post page
 
@@ -52,7 +52,7 @@ The following **optional** features are implemented:
 - [ ] Users can repost a previous post by referencing its post ID. On the post page of the new post
   - Users can repost a previous post by referencing its post ID
   - On the post page of the new post, the referenced post is displayed and linked, creating a thread
-- [ ] Users can customize the interface
+- [x] Users can customize the interface
   - e.g., selecting the color scheme or showing the content and image of each post on the home feed
 - [ ] Users can add more characterics to their posts
   - Users can share and view web videos
@@ -63,7 +63,12 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-* [ ] List anything else that you added to improve the site's functionality!
+* [x] Downvote feature
+* [x] Upvote & Downvote for comments and Delete button
+* [x] Option to sort comments by newest or popular
+* [x] Animation to delete and edit buttons
+* [x] Search bar is useable no matter the page the user is currently on
+* [x] CSS configuried to work on mobile devices
 
 ## Video Walkthrough
 
@@ -80,11 +85,22 @@ GIF created with ...
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+Challenges when creating the App include:
+- Managing state updates and syncing data across components was tricky, especially for search, detail views, and comments.
+
+- Ensuring Supabase inserts and updates didn’t create duplicate or changed IDs required extra care.
+
+- Implementing real-time comment updates after creation, deletion, and voting needed proper use of React hooks and props.
+
+- Creating responsive UI elements (search bar, comment inputs, images) for different screen sizes involved detailed CSS media queries.
+
+- Debugging conditional rendering and component re-renders to avoid flickering or unwanted behavior was challenging.
+
+- Handling navigation while preserving or resetting state (like search queries or detail views) across pages took some experimentation.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright 2025 Nour Elshabasy
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

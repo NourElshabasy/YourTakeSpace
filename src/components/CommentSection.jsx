@@ -50,7 +50,7 @@ const CommentSection = ({ postId, submitSuccess, setSubmitSuccess }) => {
           disabled={sortBy === "popular"}
           className="order-buttons"
         >
-          Most Popular
+        Popular
         </button>
         <p>
           {comments.length} Comment{comments.length !== 1 && "s"}
