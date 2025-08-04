@@ -76,4 +76,7 @@
   img.post-image{
     width: 100%;
   }
+  div.create-post{
+    width: 75vw;
+  }
 }

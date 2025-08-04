@@ -5,7 +5,6 @@ import "./CreateComment.css";
 
 const CreateComment = ({ postId, setSubmitSuccess }) => {
   const [comment, setComment] = useState("");
-  
 
   const createComment = async (event) => {
     event.preventDefault();
@@ -25,18 +24,25 @@ const CreateComment = ({ postId, setSubmitSuccess }) => {
     setComment("");
     setSubmitSuccess(true);
   };
+
   return (
     <div className="create-comment">
       <form>
         <textarea
           value={comment}
-          onChange={(e) => setComment(e.target.value)}
           placeholder="Write your comment..."
-          rows={2}
+          rows={1}
+          onChange={(e) => {
+            setComment(e.target.value);
+            e.target.style.height = "auto"; // reset
+            e.target.style.height = e.target.scrollHeight + "px"; // grow
+          }}
           className="comment-input"
         ></textarea>
       </form>
-      <button className="post-comment-button"onClick={createComment}>POST</button>
+      <button className="post-comment-button" onClick={createComment}>
+        POST
+      </button>
     </div>
   );
 };
